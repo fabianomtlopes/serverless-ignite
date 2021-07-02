@@ -3,12 +3,12 @@ import {document} from 'src/util/dynamodbClient';
 
 export const handle: APIGatewayProxyHandler = async (event) => {
   const { id } = event.pathParameters;
-
+ 
   const response = await document.query({
     TableName: "todo",
-    KeyConditionExpression: "user_id = :id",
+    KeyConditionExpression: "id = :id",
     ExpressionAttributeValues: {
-      ":id" : id
+      ":id": id
     }
   }).promise();
 
